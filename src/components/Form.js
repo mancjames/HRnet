@@ -1,30 +1,27 @@
 import React from 'react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { states } from '../utils/states';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Address, Label, FormElement } from '../styles/styledElements';
-
-//styles
-
-
+import { FormContext } from '../utils/FormContext';
 
 export default function Form() {
-  const [formData, setFormData] = useState(
-    {
-        firstName: "", 
-        lastName: "", 
-        birthDate: new Date(), 
-        startDate: "", 
-        street: "",
-        city: "",
-        state:"",
-        zipCode:0,
-        department:""
-    }
-  )
+  const initialForm =  {
+    firstName: "", 
+    lastName: "", 
+    birthDate: "", 
+    startDate: "", 
+    street: "",
+    city: "",
+    state:"",
+    zipCode:0,
+    department:""
+}
 
-  console.log(formData)
+  const [formData, setFormData] = useState(initialForm);
+  const { allValues, setAllValues } = useContext(FormContext)
+ 
 
   function handleChange(event) {
     const {name, value} = event.target
@@ -35,6 +32,12 @@ export default function Form() {
         }
     })
 }
+
+  function addEmployee(event){
+    event.preventDefault();
+    setAllValues([...allValues, formData])
+    setFormData(initialForm)
+  };
 
   return (
     <FormElement>
@@ -63,7 +66,8 @@ export default function Form() {
         showYearDropdown
         dropdownMode="select"
         selected={formData.birthDate} 
-        onChange={ date => setFormData(prevFormData => {
+        onChange={ date => 
+        setFormData(prevFormData => {
         return {
             ...prevFormData,
             birthDate: date
@@ -72,6 +76,7 @@ export default function Form() {
 
       <Label htmlFor="start-date">Start Date</Label>
       <DatePicker 
+        type="date"
         id="start-date" 
         dateFormat="dd/MM/yy" 
         peekNextMonth
@@ -140,6 +145,8 @@ export default function Form() {
             <option>Human Resources</option>
             <option>Legal</option>
         </select>
+
+        <button type="submit" onClick={addEmployee}>Save</button>
     </FormElement>
   )
 }
