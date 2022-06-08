@@ -5,6 +5,7 @@ import { useState, useMemo } from 'react';
 import './App.css';
 import Home from './pages/Home';
 import EmployeeList from './pages/EmployeeList';
+import Header from './components/Header';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
     <div className="App">
       <FormContext.Provider value={providerValue}>
       <Router>
+      <Header />
         <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/employeelist" element={<EmployeeList />}></Route>

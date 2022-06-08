@@ -1,9 +1,8 @@
 import React from 'react'
 import { useContext, useState } from 'react'
 import { states } from '../utils/states';
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Address, Label, FormElement } from '../styles/styledElements';
+import { Address, Label, FormElement, FormButton } from '../styles/styledElements';
 import { FormContext } from '../utils/FormContext';
 
 export default function Form() {
@@ -21,7 +20,6 @@ export default function Form() {
 
   const [formData, setFormData] = useState(initialForm);
   const { allValues, setAllValues } = useContext(FormContext)
- 
 
   function handleChange(event) {
     const {name, value} = event.target
@@ -40,13 +38,14 @@ export default function Form() {
   };
 
   return (
+    <>
     <FormElement>
       <Label htmlFor="first-name">First Name</Label>
       <input type="text"
       id="first-name" 
       onChange={handleChange}
       name="firstName" 
-      value={formData.firstName} />
+      value={formData.firstName}/>
 
       <Label htmlFor="last-name">Last Name</Label>
       <input 
@@ -58,24 +57,17 @@ export default function Form() {
       />
 
       <Label htmlFor="date-of-birth">Date of Birth</Label>
-        <DatePicker 
-        id="date-of-birth" 
-        dateFormat="dd/MM/yy" 
-        peekNextMonth
-        showMonthDropdown
-        showYearDropdown
-        dropdownMode="select"
-        selected={formData.birthDate} 
-        onChange={ date => 
-        setFormData(prevFormData => {
-        return {
-            ...prevFormData,
-            birthDate: date
-        }
-        })} />
+        <input 
+       type="date"
+       id="date-of-birth"
+       onChange={handleChange}
+       name="birthDate" 
+       value={formData.birthDate}
+       placeholder="dd-mm-yyyy"
+      />
 
       <Label htmlFor="start-date">Start Date</Label>
-      <DatePicker 
+      {/* <DatePicker 
         type="date"
         id="start-date" 
         dateFormat="dd/MM/yy" 
@@ -90,7 +82,15 @@ export default function Form() {
             ...prevFormData,
             startDate: date
         }
-      })} />
+      })} /> */}
+       <input 
+       type="date"
+       id="start-date"
+       onChange={handleChange}
+       name="startDate" 
+       value={formData.startDate}
+       placeholder="dd-mm-yyyy"
+      />
 
       <Address>
         <legend>Address</legend>
@@ -139,14 +139,15 @@ export default function Form() {
         onChange={handleChange}
         value={formData.department}
         >
+            <option> </option>
             <option>Sales</option>
             <option>Marketing</option>
             <option>Engineering</option>
             <option>Human Resources</option>
             <option>Legal</option>
         </select>
-
-        <button type="submit" onClick={addEmployee}>Save</button>
     </FormElement>
+    <FormButton type="submit" onClick={addEmployee}>Save</FormButton>
+    </>
   )
 }
