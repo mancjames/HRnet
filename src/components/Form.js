@@ -1,9 +1,10 @@
 import React from 'react'
 import { useContext, useState } from 'react'
-import { states } from '../utils/states';
+import { states , department } from '../utils/states';
 import "react-datepicker/dist/react-datepicker.css";
 import { Address, Label, FormElement, FormButton } from '../styles/styledElements';
 import { FormContext } from '../utils/FormContext';
+import Select from 'react-select'
 
 export default function Form() {
   const initialForm =  {
@@ -13,16 +14,16 @@ export default function Form() {
     startDate: "", 
     street: "",
     city: "",
-    state:"",
+    state: null,
     zipCode:0,
     department:""
 }
-
   const [formData, setFormData] = useState(initialForm);
   const { allValues, setAllValues } = useContext(FormContext)
+  console.log(formData)
 
   function handleChange(event) {
-    const {name, value} = event.target
+    const {name, value} = event.target || event
     setFormData(prevFormData => {
         return {
             ...prevFormData,
@@ -36,6 +37,24 @@ export default function Form() {
     setAllValues([...allValues, formData])
     setFormData(initialForm)
   };
+
+  const stateOptions = states.map((state, index)=>{
+    return {
+      label: state.name,
+      value: state.abbreviation,
+      name: 'state',
+      key: index
+    }
+  })
+
+  const departmentOptions = department.map((dept, index)=>{
+    return {
+      label: dept.department,
+      value: dept.department,
+      name: 'department',
+      key: index
+    }
+  })
 
   return (
     <>
@@ -67,22 +86,6 @@ export default function Form() {
       />
 
       <Label htmlFor="start-date">Start Date</Label>
-      {/* <DatePicker 
-        type="date"
-        id="start-date" 
-        dateFormat="dd/MM/yy" 
-        peekNextMonth
-        showMonthDropdown
-        showYearDropdown
-        dropdownMode="select"
-        todayButton="Today"
-        selected={formData.startDate} 
-        onChange={ date => setFormData(prevFormData => {
-        return {
-            ...prevFormData,
-            startDate: date
-        }
-      })} /> */}
        <input 
        type="date"
        id="start-date"
@@ -112,18 +115,14 @@ export default function Form() {
         />
 
         <Label htmlFor="state">State</Label>
-        <select id="state" 
+        <Select id="state" 
         name="state"
         onChange={handleChange}
-        value={formData.state}>
-        {states.map((state, index) => {
-          return (
-            <option value={state.abbreviation} key={state.abbreviation + index}>
-              {state.name}
-            </option>
-          );
+        value={stateOptions.filter(function(option) {
+          return option.value === formData.state;
         })}
-        </select>
+        options={stateOptions}
+        />
 
         <Label htmlFor="zip-code">Zip Code</Label>
         <input id="zip-code" 
@@ -134,18 +133,14 @@ export default function Form() {
          />
       </Address>
         <Label htmlFor="department">Department</Label>
-        <select name="department" 
-        id="department"
+        <Select id="department" 
+        name="department"
         onChange={handleChange}
-        value={formData.department}
-        >
-            <option> </option>
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-        </select>
+        value={departmentOptions.filter(function(option) {
+          return option.value === formData.department;
+        })}
+        options={departmentOptions}
+        />
     </FormElement>
     <FormButton type="submit" onClick={addEmployee}>Save</FormButton>
     </>
