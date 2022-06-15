@@ -56,6 +56,28 @@ export default function Form() {
     }
   })
 
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      background: '#fff',
+      borderColor: 'rgb(118, 118, 118)',
+      minHeight: '25px',
+      height: '25px',
+    }),
+    valueContainer: (provided, state) => ({
+      ...provided,
+      height: '25px',
+      margin: '0',
+      padding: '0 6px',
+    }),
+    input: (provided, state) => ({
+      ...provided,
+      margin: '0',
+      height: '25px',
+      fontSize: '.75rem'
+    }),
+  }
+
   return (
     <>
     <FormElement>
@@ -122,6 +144,7 @@ export default function Form() {
           return option.value === formData.state;
         })}
         options={stateOptions}
+        styles={customStyles}
         />
 
         <Label htmlFor="zip-code">Zip Code</Label>
@@ -140,6 +163,7 @@ export default function Form() {
           return option.value === formData.department;
         })}
         options={departmentOptions}
+        styles={customStyles}
         />
     </FormElement>
     <FormButton type="submit" onClick={addEmployee}>Save</FormButton>
