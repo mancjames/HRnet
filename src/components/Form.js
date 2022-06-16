@@ -4,7 +4,8 @@ import { states , department } from '../utils/states';
 import "react-datepicker/dist/react-datepicker.css";
 import { Address, Label, FormElement, FormButton } from '../styles/styledElements';
 import { FormContext } from '../utils/FormContext';
-import Select from 'react-select'
+import Select from 'react-select';
+import Modal from 'modal-package-hrnet';
 
 export default function Form() {
   const initialForm =  {
@@ -19,8 +20,9 @@ export default function Form() {
     department:""
 }
   const [formData, setFormData] = useState(initialForm);
-  const { allValues, setAllValues } = useContext(FormContext)
-  console.log(formData)
+  const { allValues, setAllValues } = useContext(FormContext);
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
 
   function handleChange(event) {
     const {name, value} = event.target || event
@@ -35,6 +37,7 @@ export default function Form() {
   function addEmployee(event){
     event.preventDefault();
     setAllValues([...allValues, formData])
+    setModalIsOpen(true)
     setFormData(initialForm)
   };
 
@@ -166,6 +169,13 @@ export default function Form() {
         styles={customStyles}
         />
     </FormElement>
+    {modalIsOpen && (
+				<Modal
+					setOpen={setModalIsOpen}
+					message="Employee created"
+					buttonText="Close"
+				/>
+			)}
     <FormButton type="submit" onClick={addEmployee}>Save</FormButton>
     </>
   )

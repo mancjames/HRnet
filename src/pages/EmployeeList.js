@@ -5,6 +5,10 @@ import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import { Link } from 'react-router-dom'
 
+  function formatDate(date){
+    return date.split('-').reverse().join('-')
+  }
+
   const columns = [
     {
       name: 'First Name',
@@ -19,11 +23,13 @@ import { Link } from 'react-router-dom'
     {
       name: 'Birth date',
       selector: row => row.birthDate,
+      format: row => formatDate(row.birthDate),
       sortable: true,
     },
     {
       name: 'Start Date',
       selector: row => row.startDate,
+      format: row => formatDate(row.startDate),
       sortable: true,
     },
     {
