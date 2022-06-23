@@ -1,6 +1,7 @@
 import React from 'react'
-import { Title } from '../styles/styledElements'
+import { Title, Container } from '../styles/styledElements'
 import { useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
     const { pathname } = useLocation()
@@ -8,9 +9,13 @@ export default function Header() {
 
     if (pathname === '/'){
         return (
-            <Title>
+            <>
+            <Container>
                 <h1>HRnet</h1>
-            </Title>
+                <Link to={'/employeelist'}>View Current Employees</Link>
+                <h1>Create Employee</h1>
+            </Container>
+            </>
           )
     }
     if (pathname === '/employeelist'){

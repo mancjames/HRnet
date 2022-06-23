@@ -66,6 +66,7 @@ export default function Form() {
       borderColor: 'rgb(118, 118, 118)',
       minHeight: '25px',
       height: '25px',
+      fontSize: '.75rem'
     }),
     valueContainer: (provided, state) => ({
       ...provided,
@@ -77,7 +78,11 @@ export default function Form() {
       ...provided,
       margin: '0',
       height: '25px',
-      fontSize: '.75rem'
+    }),
+    indicatorsContainer: (provided, state) => ({
+      ...provided,
+      minHeight: '25px',
+      height: '25px',
     }),
   }
 

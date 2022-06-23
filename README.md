@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Project #14 - Argent Bank API
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was designed to recreate a jquery application into React. The original repo can be found [here](https://github.com/OpenClassrooms-Student-Center/P12_Front-end)
 
-## Available Scripts
+I also had to convert one of the current jQuery plugins into a React plugin published on npm. The original jQuery plugin I chose to recreate was the [jquery-modal](https://github.com/kylefox/jquery-modal). For the purposes of this project, I was only required to replicate the UI functionality of the plugin (so for the modal, being able to add your own messages and the modal closing when you click outside of it)
 
-In the project directory, you can run:
+A link to my plugin modal-package-hrnet can be found [here](https://www.npmjs.com/package/modal-package-hrnet)
 
-### `yarn start`
+For the remaining plugins, I used existing React libraries to provide me the same functionality as shown in the prerequisites section below
+### Technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+• [React](https://reactjs.org)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `yarn test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+• yarn
 
-### `yarn build`
+• [react-table-components](https://www.npmjs.com/package/react-data-table-component)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+• [react-table-components-extension](https://www.npmjs.com/package/react-data-table-component-extensions)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+• [react-datepicker](https://www.npmjs.com/package/react-datepicker)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+• [react-router-dom](https://www.npmjs.com/package/react-router-dom)
 
-### `yarn eject`
+• [react-select](https://react-select.com/home)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+• [styled-components](https://styled-components.com/)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+• [modal-package-hrnet](https://www.npmjs.com/package/modal-package-hrnet)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 1 - Installation
 
-## Learn More
+Clone the repository oin your chosen location using the following command:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```git clone https://github.com/mancjames/HRnet.git```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+In your terminal, change directories to your chosen location and use the following to install the required dependencies:
 
-### Code Splitting
+```yarn install```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Once done, you can launch the front-end application on port http://localhost:3000 by running the following command:
 
-### Analyzing the Bundle Size
+```yarn start```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Please note that the application used React Context for it's state management. Therefore, anything you save will be reset if you refresh/leave the browser.

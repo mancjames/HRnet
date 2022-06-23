@@ -19,6 +19,7 @@ export const Label = styled.label`
 
 export const FormElement = styled.form`
     text-align: left;
+    width: 18rem;
 `
 
 export const FormButton = styled.button`
